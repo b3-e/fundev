@@ -12,6 +12,22 @@ function check(label, actual, expected){
   else { fail++; console.log('FAIL', label, 'got', JSON.stringify(a), 'want', JSON.stringify(e)); }
 }
 
+function checkThrows(label, fn, expectedSubstring){
+  try {
+    fn();
+    fail++;
+    console.log('FAIL', label, 'did not throw');
+  } catch (err) {
+    const msg = String(err && err.message ? err.message : err);
+    if(expectedSubstring && !msg.toLowerCase().includes(expectedSubstring.toLowerCase())){
+      fail++;
+      console.log('FAIL', label, 'wrong error', msg);
+      return;
+    }
+    pass++;
+  }
+}
+
 // Pseudocode tests
 check('pc rectangle', runPseudocode(`FUNCTION rectangle_area(length, width)\n    RETURN length * width\nENDFUNCTION\n`, 'rectangle_area', [4,5]), 20);
 

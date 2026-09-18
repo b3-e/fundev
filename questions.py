@@ -10,10 +10,10 @@ Year 12 syllabus, Unit 3 -> "Programming" content area only:
   passing), operators, data structures (arrays/dictionaries), good
   programming practice, structured algorithms (Big O, search, sort),
   testing, error detection & debugging, object-oriented programming, and
-  the ethical/legal implications for developers.
+  pseudocode/Python translation skills.
 
-Network communications, cyber security and data management (Unit 4) are
-deliberately out of scope here.
+Networking/cyber/data-management topics are deliberately out of scope here
+so this bank stays focused on executable programming practice.
 """
 from __future__ import annotations
 
@@ -398,9 +398,9 @@ def build_builtin_questions() -> list:
         [
             TestCase(args=(sorted_small, 7), expected=3, label="small sanity check"),
             TestCase(args=(sorted_big, 1000), expected=500, label="1000 items, present -- O(log n)",
-                     max_steps_expr="8*math.log2(n)+20"),
+                     min_steps_expr="6", max_steps_expr="8*math.log2(n)+20"),
             TestCase(args=(sorted_big, 1), expected=-1, label="1000 items, absent -- O(log n)",
-                     max_steps_expr="8*math.log2(n)+20"),
+                     min_steps_expr="6", max_steps_expr="8*math.log2(n)+20"),
         ],
         method_note="Method check: real binary search on 1000 items takes roughly "
                     "log2(1000) ~ 10 steps. Anywhere near 1000 steps means it's secretly "
@@ -981,130 +981,52 @@ def build_builtin_questions() -> list:
     ))
 
     # =========================================================
-    # ETHICAL & LEGAL IMPLICATIONS FOR DEVELOPERS
+    # EXTRA PROGRAMMING THEORY DRILL (MCQ ONLY)
     # =========================================================
-    q.append(_quiz(
-        "quiz.ip_acknowledgement", "Acknowledging Intellectual Property", "Ethical & Legal Implications",
-        "Developer Rights & Responsibilities",
-        "A developer reuses a chunk of open-source code written by someone else "
-        "inside their own project. What is their ethical/legal responsibility?",
-        ["Nothing -- once code is on the internet it belongs to whoever uses it",
-         "To acknowledge the original author's intellectual property rather than "
-         "presenting it as their own work",
-         "To rewrite Python's entire standard library from scratch",
-         "To keep the reused code a secret from their employer"], 1,
-        "Developers are expected to acknowledge the intellectual property of others "
-        "they build on, rather than claiming someone else's work as their own.",
-    ))
-    q.append(_quiz(
-        "quiz.code_of_conduct", "Code of Conduct", "Ethical & Legal Implications",
-        "Developer Rights & Responsibilities",
-        "Why do many software organisations expect developers to adhere to a "
-        "professional 'code of conduct'?",
-        ["It's a legal requirement in every country with no exceptions",
-         "It sets shared expectations for ethical, responsible behaviour -- e.g. "
-         "honesty, respecting users, not causing harm -- across the profession",
-         "It specifies which programming language must be used",
-         "It replaces the need for testing"], 1,
-        "A code of conduct sets out expected professional and ethical standards of "
-        "behaviour for developers, covering things like honesty and responsible "
-        "treatment of users and data.",
-    ))
-    q.append(_quiz(
-        "quiz.ergonomics", "Ergonomic Issues", "Ethical & Legal Implications",
-        "Developer Rights & Responsibilities",
-        "A developer designs a data-entry interface with tiny, cramped controls that "
-        "cause user strain and errors over long use. Which responsibility have they "
-        "neglected?",
-        ["Addressing ergonomic issues in software design",
-         "Ensuring referential integrity",
-         "Subnetting the network correctly",
-         "Normalising the database to 3NF"], 0,
-        "Ergonomics is about designing software that is comfortable and safe to use "
-        "over extended periods -- layout, sizing, and interaction design all matter.",
-    ))
-    q.append(_quiz(
-        "quiz.inclusivity", "Inclusivity in Software Design", "Ethical & Legal Implications",
-        "Developer Rights & Responsibilities",
-        "Why is it considered a developer responsibility to address inclusivity "
-        "issues (e.g. accessibility for users with disabilities) in software design?",
-        ["It's optional and only matters for government software",
-         "Software should be usable by as broad a range of people as reasonably "
-         "possible, not just one narrow group of users",
-         "It makes the code run faster",
-         "It is unrelated to ethics, only to marketing"], 1,
-        "Inclusive design aims to make software usable by people with a wide range of "
-        "abilities and needs, rather than assuming every user is the same.",
-    ))
-    q.append(_quiz(
-        "quiz.privacy_dev", "Ensuring Privacy", "Ethical & Legal Implications",
-        "Developer Rights & Responsibilities",
-        "What does it mean for a developer to ensure 'individuals' privacy is not "
-        "compromised' when building software?",
-        ["Publishing all collected user data openly for transparency",
-         "Handling and storing personal data responsibly, only using/sharing it "
-         "appropriately and protecting it from unauthorised access",
-         "Never collecting any data at all, under any circumstances",
-         "Encrypting the source code so nobody can read it"], 1,
-        "Protecting privacy means responsibly collecting, storing and using personal "
-        "data, and safeguarding it from being exposed or misused.",
-    ))
-    q.append(_quiz(
-        "quiz.malware_responsibility", "Malware & Developer Responsibility", "Ethical & Legal Implications",
-        "Impacts of Software in Society",
-        "What is a software developer's ethical/legal responsibility regarding "
-        "malware such as viruses?",
-        ["To create malware only for 'educational' purposes",
-         "To neither generate nor transmit malware -- deliberately writing or "
-         "spreading malicious software is both unethical and illegal",
-         "Malware is acceptable if the source code is kept private",
-         "Only large companies need to worry about malware"], 1,
-        "Developers are expected to neither create nor distribute malware -- doing so "
-        "is both an ethical breach and, in most jurisdictions, illegal.",
-    ))
-    q.append(_quiz(
-        "quiz.reliance_on_software", "Reliance on Software", "Ethical & Legal Implications",
-        "Impacts of Software in Society",
-        "Society becoming heavily reliant on software (e.g. for banking, "
-        "navigation, healthcare records) raises what kind of concern?",
-        ["None -- more reliance is always purely beneficial with no downsides",
-         "If that software fails, is unavailable, or is flawed, the impact on "
-         "people's lives can be significant, which raises the stakes on software "
-         "quality and reliability",
-         "It only matters for entertainment software",
-         "It removes the need for any testing"], 1,
-        "As more of daily life depends on software working correctly, failures or "
-        "flaws can have serious, wide-reaching real-world consequences.",
-    ))
-    q.append(_quiz(
-        "quiz.cyber_safety", "Cyber Safety & Social Networking", "Ethical & Legal Implications",
-        "Impacts of Software in Society",
-        "Which of these is a cyber-safety concern developers should consider when "
-        "building social-networking style software?",
-        ["Making sure fonts are consistent across screens",
-         "Risks like harassment, oversharing of personal information, or exposure to "
-         "harmful content between users of the platform",
-         "Whether the app uses a relational or non-relational database",
-         "The programming language's release date"], 1,
-        "Cyber safety concerns for social platforms include things like harassment, "
-        "privacy risks from oversharing, and exposure to harmful content -- design "
-        "choices can help mitigate these.",
-    ))
-    q.append(_quiz(
-        "quiz.unreliable_info", "Unverifiable Information Online", "Ethical & Legal Implications",
-        "Impacts of Software in Society",
-        "The internet makes huge volumes of information available, some of it "
-        "unsupported, unverifiable, misleading or simply incorrect. Why is this "
-        "relevant to software developers?",
-        ["It isn't relevant to developers at all, only to journalists",
-         "Software that surfaces or relies on such information (e.g. search results, "
-         "feeds, data imports) can spread misinformation, so this needs to be "
-         "considered in how systems are designed",
-         "It means developers should stop using the internet completely",
-         "It only matters for government websites"], 1,
-        "Because software often surfaces or processes information from the internet, "
-        "developers need to consider the risk of spreading unreliable or misleading "
-        "content through their systems.",
-    ))
+    extra_programming_quiz = [
+        ("quiz.prog_01", "Variable vs Constant", "Data Types", "Variables", "Which statement is true about a constant?", ["Its value is intended to stay unchanged once assigned", "It must always store text", "It can only be used in loops", "It is created automatically by Python for every variable"], 0, "A constant models fixed data that should not be reassigned.", "core"),
+        ("quiz.prog_02", "Casting Input", "Data Types", "Casting", "input() returns text in Python. What should you do before numeric addition?", ["Use int()/float() to cast input values", "Use len() on both inputs", "Convert numbers to booleans", "Sort the inputs first"], 0, "Explicit casting avoids accidental string concatenation.", "core"),
+        ("quiz.prog_03", "Integer Division", "Operators & Expressions", "Arithmetic", "What does 17 // 5 evaluate to in Python?", ["3", "3.4", "2", "4"], 0, "// performs floor integer division.", "core"),
+        ("quiz.prog_04", "Modulo Use", "Operators & Expressions", "Arithmetic", "Which expression checks if n is even?", ["n % 2 == 0", "n // 2 == 0", "n / 2 == 0", "n == 2"], 0, "Modulo 2 equals zero for even numbers.", "core"),
+        ("quiz.prog_05", "Boolean Precedence", "Operators & Expressions", "Boolean Logic", "In Python, which has higher precedence?", ["not", "and", "or", "All equal"], 0, "not binds tighter than and/or.", "stretch"),
+        ("quiz.prog_06", "Validation Loop", "Control Structures", "Validation", "What is the main purpose of a validation loop?", ["Repeat until user data meets required rules", "Make sorting faster", "Convert recursion to iteration", "Store data permanently"], 0, "Validation loops enforce input constraints before proceeding.", "core"),
+        ("quiz.prog_07", "Sentinel Loop", "Control Structures", "Sentinels", "A sentinel-controlled loop stops when:", ["A special marker value is read", "The list is sorted", "A function returns True once", "The first iteration ends"], 0, "Sentinel loops terminate on a designated value like -1 or QUIT.", "core"),
+        ("quiz.prog_08", "Accumulator Pattern", "Control Structures", "Accumulators", "An accumulator is typically initialised before a loop to:", ["Store a running total/result", "Track source file names", "Control recursion depth", "Replace every conditional"], 0, "Accumulators combine values across iterations.", "core"),
+        ("quiz.prog_09", "Trace Table Value", "Control Structures", "Tracing", "If total starts at 0 and loop adds 2 three times, final total is:", ["6", "3", "5", "8"], 0, "0 + 2 + 2 + 2 = 6.", "core"),
+        ("quiz.prog_10", "String Slicing", "Data Structures", "Strings", "What does s[1:4] return?", ["Characters at indexes 1,2,3", "Indexes 1..4 inclusive", "Only index 4", "The full string"], 0, "Python slices include start and exclude end.", "core"),
+        ("quiz.prog_11", "Immutable Strings", "Data Structures", "Strings", "Why does s[0] = 'A' fail for a Python string?", ["Strings are immutable", "s[0] is out of range", "Characters must be numbers", "Assignment only works in loops"], 0, "Strings cannot be modified in-place.", "core"),
+        ("quiz.prog_12", "Frequency Map", "Data Structures", "Dictionaries", "Best structure for counting word frequencies:", ["Dictionary/map of word -> count", "Tuple of fixed length", "Single integer", "Boolean flag"], 0, "Hash maps support efficient membership/update for counts.", "core"),
+        ("quiz.prog_13", "Dictionary Membership", "Data Structures", "Dictionaries", "In Python, `key in d` checks membership in:", ["dictionary keys", "dictionary values only", "both keys and values", "neither"], 0, "Membership tests keys by default.", "core"),
+        ("quiz.prog_14", "Set Semantics", "Data Structures", "Sets", "Which property is true for sets?", ["They keep unique elements", "They preserve all duplicates", "They require numeric values only", "They are always sorted"], 0, "Sets model uniqueness and fast membership.", "core"),
+        ("quiz.prog_15", "Tuple Feature", "Data Structures", "Tuples", "When is a tuple preferable to a list?", ["When fixed, ordered data should stay immutable", "When frequent inserts in middle are needed", "When key-value lookup is needed", "When items must be mutable"], 0, "Tuples express fixed records.", "core"),
+        ("quiz.prog_16", "2D Array Access", "Data Structures", "2D Arrays", "Given grid[row][col], what does row usually represent?", ["Which inner list", "Character code", "Dictionary key count", "Sort pass number"], 0, "2D arrays are nested lists indexed by row then column.", "core"),
+        ("quiz.prog_17", "List Mutation", "Data Structures", "Lists", "Which operation mutates an existing list?", ["append(x)", "sorted(lst)", "lst + [x] only", "tuple(lst)"], 0, "append modifies the list in place.", "core"),
+        ("quiz.prog_18", "Shallow Copy", "Data Structures", "Lists", "`copy = lst[:]` is mainly used to:", ["Create a shallow copy", "Sort descending", "Remove duplicates automatically", "Convert to dictionary"], 0, "Slicing full range clones top-level list contents.", "core"),
+        ("quiz.prog_19", "Linear Search Complexity", "Searching & Sorting", "Complexity", "Linear search worst-case time on n items is:", ["O(n)", "O(log n)", "O(1)", "O(n log n)"], 0, "It may inspect every element once.", "core"),
+        ("quiz.prog_20", "Binary Search Requirement", "Searching & Sorting", "Binary Search", "Binary search only works correctly when the array is:", ["sorted", "contains only integers", "length is even", "all values unique"], 0, "Ordering is the key precondition for halving search space.", "core"),
+        ("quiz.prog_21", "Bubble Sort Idea", "Searching & Sorting", "Sorting", "Bubble sort repeatedly:", ["swaps adjacent out-of-order pairs", "selects global minimum once", "partitions around pivot", "uses recursion only"], 0, "Bubble sort performs local neighbour swaps across passes.", "core"),
+        ("quiz.prog_22", "Big-O Intuition", "Searching & Sorting", "Complexity", "If doubling n roughly quadruples runtime, complexity is closest to:", ["O(n^2)", "O(n)", "O(log n)", "O(1)"], 0, "Quadratic growth scales with square of n.", "stretch"),
+        ("quiz.prog_23", "Function Purpose", "Functions & Scope", "Decomposition", "Why decompose a program into functions?", ["To isolate tasks and improve reuse/testing", "To force global variables", "To avoid parameters", "To remove all loops"], 0, "Functions improve structure, readability, and testability.", "core"),
+        ("quiz.prog_24", "Return vs Print", "Functions & Scope", "Return Values", "Why prefer `return value` over only `print(value)` in reusable functions?", ["Callers can use returned data in further computation", "print is faster for all tasks", "return only works in recursion", "print automatically tests code"], 0, "Returned values compose with other logic.", "core"),
+        ("quiz.prog_25", "Local Scope", "Functions & Scope", "Scope", "A variable created inside a function body is usually:", ["local to that function", "global by default", "shared with every loop", "stored in file"], 0, "Locals exist in function scope unless declared otherwise.", "core"),
+        ("quiz.prog_26", "Recursion Base Case", "Recursion", "Base Case", "Why must recursive functions have a base case?", ["To guarantee termination", "To run faster than loops", "To avoid parameters", "To enable casting"], 0, "Without a base case recursion does not stop.", "core"),
+        ("quiz.prog_27", "Recursive Step", "Recursion", "Reduction", "In recursion, each call should usually:", ["reduce the problem toward base case", "increase input indefinitely", "skip returning values", "avoid conditional checks"], 0, "Progress toward a smaller/easier instance is essential.", "core"),
+        ("quiz.prog_28", "Test Case Design", "Testing", "Boundary Testing", "Which is a boundary-value test for `score >= 50` pass rule?", ["score = 49 and score = 50", "score = 10 only", "score = 100 only", "any random score"], 0, "Boundary tests target edge transitions.", "core"),
+        ("quiz.prog_29", "Regression Testing", "Testing", "Regression", "A regression test is added to:", ["ensure a fixed bug stays fixed", "replace all unit tests", "measure CPU temperature", "document variable names"], 0, "Regression tests lock in expected behavior after fixes.", "core"),
+        ("quiz.prog_30", "Runtime Error", "Error Detection & Debugging", "Runtime Errors", "Which is a runtime error in Python?", ["IndexError from accessing arr[99]", "Using whitespace indentation", "Naming a function", "Defining a variable"], 0, "Out-of-range list access raises IndexError at runtime.", "core"),
+        ("quiz.prog_31", "Syntax vs Logic", "Error Detection & Debugging", "Debugging", "Program runs but output is wrong. Most likely bug type:", ["logic error", "syntax error", "import error only", "tokenization error only"], 0, "Wrong algorithm/conditions cause logic bugs despite valid syntax.", "core"),
+        ("quiz.prog_32", "Defensive Branch", "Good Programming Practice", "Error Handling", "What is defensive programming in this context?", ["Checking invalid inputs and handling them safely", "Avoiding all conditionals", "Using only global state", "Removing tests to ship faster"], 0, "Defensive checks prevent crashes and undefined behavior.", "core"),
+        ("quiz.prog_33", "Pseudocode IF", "Good Programming Practice", "Pseudocode", "Python `if x > 0:` most directly maps to:", ["IF x > 0 THEN", "IF x > 0 DO", "WHEN x > 0", "IF (x > 0) ENDIF"], 0, "This bank's pseudocode dialect uses IF ... THEN blocks.", "core"),
+        ("quiz.prog_34", "Pseudocode Loop", "Good Programming Practice", "Pseudocode", "How is a Python `while cond:` loop closed in this pseudocode dialect?", ["ENDWHILE", "ENDIF", "ENDFOR", "STOP"], 0, "WHILE blocks close with ENDWHILE.", "core"),
+        ("quiz.prog_35", "FOR-IN Translation", "Good Programming Practice", "Pseudocode", "A Python `for w in words:` loop conceptually iterates over:", ["each element value in order", "dictionary hash slots directly", "only indexes divisible by 2", "just first and last elements"], 0, "FOR-IN visits sequence elements one by one.", "core"),
+        ("quiz.prog_36", "Class Responsibility", "Object-Oriented Programming", "Classes", "What is a good class design principle for beginners?", ["Each class should model one coherent responsibility", "Put every method in one giant class", "Avoid constructors", "Use inheritance for everything"], 0, "Single-responsibility classes are easier to test and maintain.", "core"),
+        ("quiz.prog_37", "Method vs Function", "Object-Oriented Programming", "Classes", "A method differs from a standalone function because it:", ["is called on an object instance/class", "cannot return values", "cannot take parameters", "must be recursive"], 0, "Methods are behavior attached to objects.", "core"),
+        ("quiz.prog_38", "Abstraction Benefit", "Object-Oriented Programming", "OOP Concepts", "Why expose a small public method API and hide internals?", ["To reduce coupling and protect invariants", "To make debugging impossible", "To prevent all reuse", "To forbid unit testing"], 0, "Abstraction and encapsulation keep object state controlled.", "stretch"),
+        ("quiz.prog_39", "Algorithm Choice", "Searching & Sorting", "Algorithm Selection", "For checking if one item exists in an unsorted short list, best first choice is often:", ["simple linear scan", "build full balanced tree", "dynamic programming table", "FFT"], 0, "Choose simple methods when scale is small and constraints are light.", "core"),
+        ("quiz.prog_40", "Refactor Trigger", "Good Programming Practice", "Maintainability", "Which sign most strongly suggests refactoring into helper functions?", ["Repeated code blocks with minor changes", "Using variables", "Returning a value", "One short if statement"], 0, "Duplication increases bug risk and maintenance cost.", "stretch"),
+    ]
+
+    for item in extra_programming_quiz:
+        q.append(_quiz(*item[:-1], difficulty=item[-1]))
 
     return q
