@@ -15,6 +15,7 @@ headlessly.
 """
 from __future__ import annotations
 
+import copy
 import math
 import sys
 import time
@@ -252,7 +253,9 @@ def evaluate_python_submission(question: "Question", source: str) -> dict:
                  "method_messages": []}
         lines = calls = None
         try:
-            result, lines, calls = run_and_count(func, question.func_name, tc.args, tc.kwargs)
+            call_args = copy.deepcopy(tc.args)
+            call_kwargs = copy.deepcopy(tc.kwargs)
+            result, lines, calls = run_and_count(func, question.func_name, call_args, call_kwargs)
             entry["actual"] = result
             entry["passed"] = _values_equal(result, tc.expected)
             entry["lines"], entry["calls"] = lines, calls
@@ -279,7 +282,8 @@ def evaluate_pseudocode_submission(question: "Question", source: str) -> dict:
                  "actual": None, "passed": False, "error": None, "lines": None, "calls": None,
                  "method_messages": []}
         try:
-            result, steps, calls = run_pseudocode_and_count(source, question.func_name, tc.args)
+            call_args = copy.deepcopy(tc.args)
+            result, steps, calls = run_pseudocode_and_count(source, question.func_name, call_args)
             entry["actual"] = result
             entry["passed"] = _values_equal(result, tc.expected)
             entry["lines"], entry["calls"] = steps, calls

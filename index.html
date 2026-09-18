@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CodeAnki</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="layout" aria-label="CodeAnki practice app">
+    <header class="topbar">
+      <h1>CodeAnki</h1>
+      <p class="subtitle">Programming exam practice · Python + Pseudocode</p>
+      <div id="mastery" class="mastery" aria-live="polite"></div>
+    </header>
+
+    <section class="filters" aria-label="Question filters">
+      <label>Search <input id="search" type="search" placeholder="title, prompt, topic" /></label>
+      <label>Category <select id="category"></select></label>
+      <label>Difficulty <select id="difficulty"><option value="all">All</option><option value="core">Core</option><option value="stretch">Stretch</option></select></label>
+      <label>Type <select id="qtype"><option value="all">All</option><option value="code">Coding</option><option value="quiz">Multiple-choice</option><option value="oop">OOP coding</option></select></label>
+      <label>Language <select id="language"><option value="python">Python</option><option value="pseudocode">Pseudocode</option></select></label>
+    </section>
+
+    <section class="navigator" aria-label="Question navigation">
+      <button id="prevBtn" type="button">Previous</button>
+      <button id="nextBtn" type="button">Next</button>
+      <button id="randomBtn" type="button">Random due</button>
+      <button id="resetBtn" type="button">Reset progress</button>
+      <span id="position" aria-live="polite"></span>
+    </section>
+
+    <article class="card" id="questionCard">
+      <h2 id="title"></h2>
+      <div class="meta"><span id="chipCategory"></span><span id="chipSubtopic"></span><span id="chipDifficulty"></span></div>
+      <p id="prompt"></p>
+      <pre id="starter" hidden><code></code></pre>
+      <form id="quizForm" hidden></form>
+      <label id="codeLabel" hidden for="codeInput">Your answer</label>
+      <textarea id="codeInput" rows="14" spellcheck="false" hidden></textarea>
+      <div class="actions"><button id="submitBtn" type="button">Submit</button></div>
+      <section id="feedback" class="feedback" aria-live="polite"></section>
+    </article>
+  </main>
+
+  <script src="engine.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
