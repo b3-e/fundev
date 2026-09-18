@@ -1,0 +1,188 @@
+Fix and make this "CodeAnki" more modern looking (without looking like AI slop, so take inspo from somewhere else), and include a TON more questions that includes EVERYTHING in this computer science programming curriculum. (It should also support PSEUDOCODE as a programming language). use ONLY programming questions, no other topics.
+
+Reviewing an existing coding quiz app's features.
+
+Checking whether all necessary project files are available.
+
+Deciding to rebuild the app as a self-contained page.
+
+Weighing options for running pseudocode and Python client-side.
+
+Scoping a lightweight Python-subset interpreter for grading.
+
+Scoping a shared interpreter for Python and pseudocode syntax.
+
+Planning a translation layer via indentation-based preprocessing.
+
+Mapping out the full syllabus topics and question bank.
+
+Simplifying scope to a regex-based Python-to-pseudocode converter.
+
+Drafting regex rules for loops, returns, and list methods.
+
+Mapping built-in function names to pseudocode equivalents.
+
+Designing a coding practice flashcard app for CS students.
+
+Choosing an exam-paper visual style over generic dev themes.
+
+Grounding accent colors in the syllabus document's own branding.
+
+Designing exam-styled question cards with marked-up code feedback.
+
+Mapping mastery scores onto the syllabus grading scale.
+
+Building a pseudocode and Python interpreter for grading code.
+
+Converting Python indentation into equivalent block-closing pseudocode.
+
+Mapping Python syntax patterns to pseudocode equivalents.
+
+Mapping built-in functions to their pseudocode equivalents.
+
+Expanding the question bank across many topics and formats.
+
+Designing dictionary equality checks and infinite-loop safeguards for grading.
+
+Trimming anti-cheat checks to simplify the grading scope.
+
+bash
+
+mkdir -p /home/claude && echo ok
+
+Output
+
+ok
+
+
+bash
+
+node --version
+
+Output
+
+v22.22.2
+
+Building a pseudocode interpreter and transpiler module.
+Now let's test the engine with a range of pseudocode and Python snippets.
+Debugging an interpreter's handling of unsupported function calls.
+
+Also need in membership operator (w in freq) transpiled to CONTAINS. Let me add that to exprSub via regex, and run tests.
+
+Spotting a risky regex match on generic expressions.
+
+bash
+
+cd /home/claude && node test.js
+
+Output
+
+FAIL pc word_freq got {"cat":2,"dog":1} want {"cat":2,"dog":1}
+--- transpile samples ---
+FUNCTION grade_from_score(score)
+IF score >= 80 THEN
+RETURN 'A'
+ELSEIF score >= 70 THEN
+RETURN 'B'
+ELSE
+RETURN 'E'
+ENDIF
+ENDFUNCTION
+---
+FUNCTION sum_first_n(n)
+total = 0
+FOR i = 1 TO (n + 1)-1
+total = total + i
+RETURN total
+ENDFOR
+ENDFUNCTION
+---
+FUNCTION append_bonus(scores)
+scores = APPEND(scores, 99)
+RETURN scores
+ENDFUNCTION
+---
+FUNCTION find_max(arr)
+best = arr[0]
+FOR __i_x = 0 TO LENGTH(arr) - 1
+x = arr[__i_x]
+IF x > best THEN
+best = x
+ENDIF
+RETURN best
+ENDFOR
+ENDFUNCTION
+FAIL py sum_first_n got 1 want 15
+FAIL py find_max (for-in) got 3 want 9
+FAIL py while collatz got 0 want 8
+FAIL py recursive fib got null want 55
+FAIL py dict got {"cat":1} want {"cat":2,"dog":1}
+
+12 passed, 6 failed
+
+
+Debugging test failures involving mismatched data types.
+
+Tracing an indentation bug in the transpiler's block logic.
+
+Reworking the pop condition to handle equal indentation cases.
+
+Now fix the test harness's dict comparison (normalize Map→object) and re-run:
+
+bash
+
+cd /home/claude && node test.js
+
+Output
+
+--- transpile samples ---
+FUNCTION grade_from_score(score)
+IF score >= 80 THEN
+RETURN 'A'
+ELSEIF score >= 70 THEN
+RETURN 'B'
+ELSE
+RETURN 'E'
+ENDIF
+ENDFUNCTION
+---
+FUNCTION sum_first_n(n)
+total = 0
+FOR i = 1 TO (n + 1)-1
+total = total + i
+ENDFOR
+RETURN total
+ENDFUNCTION
+---
+FUNCTION append_bonus(scores)
+scores = APPEND(scores, 99)
+RETURN scores
+ENDFUNCTION
+---
+FUNCTION find_max(arr)
+best = arr[0]
+FOR __i_x = 0 TO LENGTH(arr) - 1
+x = arr[__i_x]
+IF x > best THEN
+best = x
+ENDIF
+ENDFOR
+RETURN best
+ENDFUNCTION
+
+18 passed, 0 failed
+
+
+Building and testing an engine for code execution.
+
+Planning a large question bank across programming categories.
+
+Choosing libraries and sketching the app's visual layout.
+
+Designing quiz and code-question interactions with scoring and hints.
+
+Rebalancing question counts to fit the effort budget.
+
+Scaling up quiz totals while keeping code checks lean.
+
+Now let me build the full application. First the engine + app logic, validated separately, then assembled into the final artifact.
